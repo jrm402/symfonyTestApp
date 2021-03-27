@@ -1,0 +1,11 @@
+{# templates/bundles/TwigBundle/Exception/error.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}An error has occurred{% endblock %}
+{% block page_title %}An error has occurred{% endblock %}
+
+{% block body %}
+    <p>
+        There was an error processing the request.<br><a href="{{ path('home') }}">Return to the homepage</a>.
+    </p>
+{% endblock %}
