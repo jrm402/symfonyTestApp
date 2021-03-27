@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 // Form builder
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
@@ -46,7 +47,11 @@ class TempController extends AbstractController
 		 * Build a form and handle submit.
 		 */
 		$this->request = $request;
-		$form = $this->buildForm();
+
+		$defaults = [
+			'date' => new \DateTime('03/11/2020'),
+		];
+		$form = $this->buildForm($defaults);
 		if($this->validateForm($form)) {
 			return $this->submitForm($form);
 		}
@@ -62,9 +67,9 @@ class TempController extends AbstractController
 	/**
 	 * Create a form.
 	 */
-	private function buildForm(): FormInterface
+	private function buildForm(array $defaults = []): FormInterface
 	{
-		$fb = $this->createFormBuilder();
+		$fb = $this->createFormBuilder($defaults);
 
 		$fb->add('task', TextType::class, [
 			'label' => 'Task Title',
@@ -73,6 +78,11 @@ class TempController extends AbstractController
 				'placeholder' => 'Task title',
 				'class' => 'hello-dolly',
 			],
+		]);
+		$fb->add('date', DateType::class, [
+			'label' => 'Date',
+			'required' => false,
+			'attr' => [],
 		]);
 		$fb->add('save', SubmitType::class, [
 			'label' => 'Create Task',
@@ -96,6 +106,8 @@ class TempController extends AbstractController
 				$this->addFlash('danger', 'Task cannot be blank.');
 				$success = false;
 			}
+
+			echo '<pre>'.print_r($data['date'],true).'</pre>';
 
 			return $success;
 
