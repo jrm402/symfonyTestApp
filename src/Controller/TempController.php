@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class TempController extends AbstractController
 {
 
-	private Request $request;
+	private $request;
 
     /**
      * @Route("/temp", name="temp")
