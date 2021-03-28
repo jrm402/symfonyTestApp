@@ -21,7 +21,7 @@
 			{% for label, messages in app.flashes %}
 				<ul class="message alert alert-{{ label }}" role="alert">
 					{% for message in messages %}
-						<li>{{ message }}</li>
+						<li>{{ message|raw }}</li>
 					{% endfor %}
 				</ul>
 			{% endfor %}
