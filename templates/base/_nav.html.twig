@@ -8,6 +8,7 @@
 	<div class="collapse navbar-collapse" id="navbarCollapse">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item {{ route_name == 'home' ? 'active' }}"><a href="{{ path('home') }}" class="nav-link">Home</a></li>
+			<li class="nav-item {{ route_name starts with 'products_' ? 'active' }}"><a href="{{ path('products_view') }}" class="nav-link">Products</a></li>
 		</ul>
 	</div>
 </nav>

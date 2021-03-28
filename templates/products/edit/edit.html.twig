@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Product{% endblock %}
+{% block page_title %}Edit Product: <strong>{{ product.name }}</strong>{% endblock %}
+
+{% block body %}
+	<div class="row mt-3 mb-3 justify-content-center">
+		<div class="col-8">
+			{{ form_start(productForm) }}
+				{{ form_row(productForm.name, {
+					label: 'Name'
+				}) }}
+				{{ form_row(productForm.description, {
+					label: 'Description'
+				}) }}
+
+				<div class="pt-3 d-flex justify-content-between">
+					<div>
+						{{ form_widget(productForm.save, {
+							label: 'Update',
+							attr: {
+								'class': 'btn btn-lg btn-primary'
+							}
+						}) }}
+						{{ form_widget(productForm.delete, {
+							label: 'Delete',
+							attr: {
+								'class': 'btn btn-lg btn-danger'
+							}
+						}) }}
+					</div>
+					<a href="{{ path('products_view') }}" class="btn btn-lg btn-link" title="Cancel">Cancel</a>
+				</div>
+			{{ form_end(productForm) }}
+		</div>
+	</div>
+{% endblock %}

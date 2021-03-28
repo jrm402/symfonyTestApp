@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+{% block page_title %}New Product Listing{% endblock %}
+
+{% block body %}
+	<div class="row mt-3 mb-3 justify-content-center">
+		<div class="col-8">
+			{{ form_start(productForm) }}
+				{{ form_row(productForm.name, {
+					label: 'Name'
+				}) }}
+				{{ form_row(productForm.description, {
+					label: 'Description'
+				}) }}
+
+				<div class="pt-3 d-flex justify-content-between">
+					{{ form_widget(productForm.save, {
+						label: 'Create',
+						attr: {
+							'class': 'btn btn-lg btn-primary'
+						}
+					}) }}
+					<a href="{{ path('products_view') }}" class="btn btn-lg btn-link" title="Cancel">Cancel</a>
+				</div>
+			{{ form_end(productForm) }}
+		</div>
+	</div>
+{% endblock %}

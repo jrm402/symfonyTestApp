@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products{% endblock %}
+{% block page_title %}Product Listing{% endblock %}
+
+{% block body %}
+	<div class="row mt-3 mb-3">
+		<div class="col">
+			<a href="{{ path('products_new') }}" title="New Product" class="btn btn-primary">New Product</a>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			{% if products|length > 0 %}
+				<ul>
+				{% for product in products %}
+					<li>{{ product.name }} - {{ product.description }} <a href="{{ path('products_edit', { id: product.id }) }}" title="Edit {{ product.name }}" class="btn btn-sm btn-outline-primary ml-2">Edit</a></li>
+				{% endfor %}
+				</ul>
+			{% else %}
+				<div class="alert alert-primary">No products - Add a product to see it on the list.</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
